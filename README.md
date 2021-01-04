@@ -18,7 +18,7 @@ donald@trump.com
 mohamad@ali.com
 
 - The user name elon@mask.com has already a few tasks by the seeding
-- All has password 1234
+- All have password 1234
 
 
 
