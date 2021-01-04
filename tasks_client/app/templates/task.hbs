@@ -1,0 +1,143 @@
+<header class="p-2 mb-2 bg-warning text-dark">
+    <div class="row">
+        <div class="col">
+            <span title="הוסף משימה" {{action 'openForm' false }} style="cursor: pointer;">
+                {{fa-icon 'plus-square'}}
+            </span>
+        </div>
+        <div class="col text-right">
+            <h5 class="font-weight-bold mt-2 mr-2">{{this.session.currentUser.data.user.name}}
+                <span title="יציאה" {{action 'logout' }}
+                    style="cursor: pointer; font-size:small;color:gray">יציאה</span>
+            </h5>
+
+        </div>
+    </div>
+</header>
+<div class="main" style="height:100%">
+    <ul class="list-group list-group-flush">
+        {{#each this.model.tasks as |task|}}
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-3">
+                    {{#if (eq task.user_id this.session.currentUser.data.user.id)}}
+                    <span title="מחק משימה" style="cursor: pointer;" {{action 'delete' task.id}}>{{fa-icon
+                        'remove'}}</span>
+                    {{/if}}
+                    {{#if (eq task.is_shared 0)}}
+                    <span style="cursor: pointer;" title="שתף משימה" {{action 'showShare' task.id}}> {{fa-icon
+                        'users'}} </span>
+                    {{else}}
+                    {{#if (eq this.session.currentUser.data.user.id task.user_id)}}
+                    <span title="שתף משימה" class="shared-with-other" {{action 'showShare' task.id}}> {{fa-icon
+                        'users'}}</span>
+                    {{else}}
+                    <span title="משימה זו שותפה איתך על ידי משתמש אחר" class="shared-with-self"> {{fa-icon
+                        'users'}}</span>
+                    {{/if}}
+                    {{/if}}
+
+                </div>
+                <div class="col-9 text-right">
+
+                    <span {{action 'openForm' true task}} class="{{if task.is_done 'done' ''}}" title="לחץ לעריכה"
+                        style="cursor: pointer;">{{task.title}}</span>
+                    <span class="mt-2">
+                        <input type="checkbox" class="{{if task.is_done 'done' ''}}" style="cursor: pointer;"
+                            {{action 'toggleCompletion' task.id task.is_done}} checked={{task.is_done}}>
+
+                    </span>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+
+    <div class="footer" style="text-align: center;">
+        <span>לסיום</span>
+        <span class="bold"> {{this.model.not_done}}</span>
+        <span>הושלמו</span>
+        <span class="bold"> {{this.model.done}}</span>
+        <span>סהכ</span>
+        <span class="bold"> {{this.model.total}}</span>
+
+    </div>
+</div>
+
+
+
+<div class="modal" style="left: 36% !important;" id="actionStatus" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="width: 22% !important;border-radius:0 !important;">
+            <div class="modal-body text-center trans">
+                <span class="spinner-border spinner-border-sm mr-auto ml-auto mt-0" role="status" aria-hidden="true"
+                    style="height: 50px;width:50px"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" style="left: 6% !important;" id="shareBox" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="width: 85% !important;border-radius:0 !important;">
+            <div class="modal-body text-center trans p-0">
+                <div class="bg-warning col text-right">
+                    <h6 class="p-3">שיתוף משימה עם</h6>
+                </div>
+
+                {{#if this.sharedData}}
+                {{#each this.sharedData as |user|}}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <span class="mr-3 mt-1 font-weight-normal">{{user.name}}</span>
+                            <span class="mt-2">
+                                {{input type="checkbox" checked=(readonly user.is_shared) click=(action 'shareToggle'
+                                user)}}
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+                <button {{action 'refresh' }} class="btn btn-warning" style="margin: 5px;">אישור</button>
+                {{else}}
+                <div class="modal-body text-center trans">
+                    <span class="spinner-border spinner-border-sm mr-auto ml-auto mt-0" role="status" aria-hidden="true"
+                        style="height: 50px;width:50px"></span>
+                </div>
+                {{/if}}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" style="left: 6% !important;" id="addBox" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="width: 85% !important;border-radius:0 !important;">
+            <div class="modal-body text-center trans">
+                {{#if this.taskEditMode}}
+                <h5>עדכן משימה</h5>
+                {{else}}
+                <h5>הוסף משימה</h5>
+                {{/if}}
+                <div class="col">
+                    <Input type="text" @value={{this.title}} class="form-control" placeholder="משימה" />
+                </div>
+                <div class="col mt-2">
+                    {{#if this.taskEditMode}}
+                    <button {{action 'updateTitle' }} class="btn btn-dark w-100">עדכן</button>
+                    {{else}}
+                    <button {{action 'careteTask' }} class="btn btn-dark w-100">הוסף</button>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{outlet}}

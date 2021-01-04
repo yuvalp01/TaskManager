@@ -1,0 +1,25 @@
+
+<div class="m-4">
+<section class="section">
+    <div class="container align-items-center" style="margin-top: 200px;">
+        <h3 class="text-center mb-4 mt-5 font-weight-bold">כניסה למערכת משימות</h3>
+        <form {{on 'submit' (fn this.authenticate)}} method="post">
+            <div class="form-group">
+                <Input {{on 'change' this.emailUp}} @type="email" @value={{this.email}} 
+                class="form-control" placeholder="Enter email" />
+            </div>
+            <div class="form-group">
+                <Input {{on 'change' this.passwordUp}} @type="password" 
+                @value={{this.password}} class="form-control" placeholder="Password" />
+            </div>
+            <button type="submit" class="col btn btn-warning">כניסה</button>
+        </form>
+    </div>
+    {{#if this.msg}}
+    <div class="col p-2 text-center text-danger">
+        {{this.msg}}
+    </div>
+    {{/if}}
+</section>
+</div>
+{{outlet}}

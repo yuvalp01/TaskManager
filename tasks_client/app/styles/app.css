@@ -1,0 +1,92 @@
+
+/* Bounce Loading */
+.bounce-loader {
+	transition: all 0.2s;
+	margin: 400px auto;
+	text-align: center;
+	width: 70px;
+	left: 50%;
+	top: 50%;
+	z-index: 10000;
+}
+
+.bounce-loader .bounce1,
+.bounce-loader .bounce2,
+.bounce-loader .bounce3 {
+	-webkit-animation: 1.4s ease-in-out 0s normal both infinite bouncedelay;
+	animation: 1.4s ease-in-out 0s normal both infinite bouncedelay;
+	background-color: #CCC;
+	border-radius: 100%;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+	display: inline-block;
+	height: 18px;
+	width: 18px;
+}
+
+.bounce-loader .bounce1 {
+	-webkit-animation-delay: -0.32s;
+	animation-delay: -0.32s;
+}
+
+.bounce-loader .bounce2 {
+	-webkit-animation-delay: -0.16s;
+	animation-delay: -0.16s;
+}
+
+@-webkit-keyframes bouncedelay {
+	0%, 80%, 100% {
+		transform: scale(0);
+	}
+
+	40% {
+		transform: scale(1);
+	}
+}
+
+@keyframes bouncedelay {
+	0%, 80%, 100% {
+		transform: scale(0);
+	}
+
+	40% {
+		transform: scale(1);
+	}
+}
+
+html.safari.iphone .bounce-loader .bounce1,
+html.safari.iphone .bounce-loader .bounce2,
+html.safari.iphone .bounce-loader .bounce3 {
+	-webkit-animation: 1.4s ease-in-out infinite bouncedelay;
+	animation: 1.4s ease-in-out infinite bouncedelay;
+}
+
+.list-group-item:hover{
+    background-color: #f1f1f1;
+}
+
+.done{
+	color: gray;
+	text-decoration: line-through;
+}
+
+.shared-with-other{
+ color: blue;
+ cursor: pointer;
+}
+.shared-with-self{
+	color: lightblue;
+   }
+
+.footer
+{
+	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+  }
+
+   footer:nth-child(odd) {
+	font-weight: bold;
+  }
+
