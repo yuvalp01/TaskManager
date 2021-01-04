@@ -11,5 +11,14 @@
 5. Run the rest API with php artisan serve
 6. Run ember with ember serve
 
+* Pre-inserted with seeding the following user names:
+elon@mask.com
+bill@gates.com
+donald@trump.com
+mohamad@ali.com
+
+** The user name elon@mask.com has already a few tasks by the seeding
+*** All has password 1234
+
 
 
