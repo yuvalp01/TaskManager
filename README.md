@@ -1,7 +1,8 @@
 # TaskManager
 
-
-1. In the tasks_API folder -> .env, change the following to fit your db
+1. In the tasks_API folder:
+    run composer update 
+    then in -> .env, change the following to fit your db
     DB_CONNECTION=XXX
     DB_DATABASE=XXX
     * the username for the db stayed root and password is empty
