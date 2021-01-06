@@ -2,15 +2,15 @@
 
 
 In the tasks_API folder:
-    1. Run composer update 
-    2. Then in -> .env, change the following to fit your db
-        DB_CONNECTION=XXX
-        DB_DATABASE=XXX
+1. Run composer update 
+2. Then in -> .env, change the following to fit your db
+       * DB_CONNECTION=XXX
+       * DB_DATABASE=XXX
     * the username for the db stayed root and password is empty
-    3. Run php artisan migrate
-    4. Run php artisan passport:install
-    5. Run php artisan passport:keys
-    6. Run php artisan db:seed
+3. Run php artisan migrate
+4. Run php artisan passport:install
+5. Run php artisan passport:keys
+6. Run php artisan db:seed
 
 
 
