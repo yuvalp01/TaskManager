@@ -4,6 +4,12 @@
             <span title="הוסף משימה" {{action 'openForm' false }} style="cursor: pointer;">
                 {{fa-icon 'plus-square'}}
             </span>
+            <span title="שחזר משימות מחוקות" {{action 'restoreAll' }} style="cursor: pointer;">
+                {{fa-icon 'recycle'}}
+            </span>
+            <span title="רוקן סל מחזור" {{action 'hardDelete' }} style="cursor: pointer;">
+                {{fa-icon 'trash'}}
+            </span>
         </div>
         <div class="col text-right">
             <h5 class="font-weight-bold mt-2 mr-2">{{this.session.currentUser.data.user.name}}

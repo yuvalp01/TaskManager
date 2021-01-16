@@ -33,7 +33,7 @@ export default class TaskController extends Controller {
 
 
     @action
-    updateTitle() { 
+    updateTitle() {
         let data = {
             id: this.currentTask.id,
             title: this.title,
@@ -51,8 +51,7 @@ export default class TaskController extends Controller {
     }
 
     @action
-    updateTask(task_id, data)
-    {
+    updateTask(task_id, data) {
         $('#actionStatus').modal({ show: true, backdrop: 'static' })
         return this.dataService.updateData('tasks/' + task_id, data)
             .then(async (r) => {
@@ -126,6 +125,36 @@ export default class TaskController extends Controller {
                 $('#actionStatus').modal('hide')
             })
 
+    }
+
+    @action
+    restoreAll() {
+        $('#addBox').modal('hide')
+        $('#actionStatus').modal({ show: true, backdrop: 'static' })
+        return this.dataService.updateData('restore')
+            .then(async (r) => {
+                this.model = await new Promise((resolve, reject) => {
+                    return resolve(
+                        this.dataService.getData('tasks/' + this.session.currentUser.data.user.id)
+                    )
+                })
+                $('#actionStatus').modal('hide')
+            })
+    }
+
+    @action
+    hardDelete() {
+        $('#addBox').modal('hide')
+        $('#actionStatus').modal({ show: true, backdrop: 'static' })
+        return this.dataService.deleteData('hardDelete', '')
+            .then(async (r) => {
+                this.model = await new Promise((resolve, reject) => {
+                    return resolve(
+                        this.dataService.getData('tasks/' + this.session.currentUser.data.user.id)
+                    )
+                })
+                $('#actionStatus').modal('hide')
+            })
     }
 
 

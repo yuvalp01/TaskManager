@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('tasks', [TaskController::class, 'add']);
     Route::put('tasks/{id}', [TaskController::class, 'update']);
     Route::delete('tasks/{id}', [TaskController::class, 'delete']);
+    Route::put('restore', [TaskController::class, 'restoreAll']);
+    Route::delete('hardDelete', [TaskController::class, 'hardDelete']);
 
     //Shared tasks - share/unshare
     Route::post('sharedTasks', [SharedTaskController::class, 'share']);
@@ -38,4 +40,3 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('tasks', [TaskController::class, 'index']);
     Route::get('sharedTasks', [SharedTaskController::class, 'index']);
 });
-

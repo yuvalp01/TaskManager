@@ -48,7 +48,7 @@ export default class StoreDataService extends Service {
                     return response.json();
                 }
                 else {
-                    return "Return with status: " +response.status;
+                    return "Return with status: " + response.status;
                 }
 
             })
